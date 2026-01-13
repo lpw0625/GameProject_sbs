@@ -1,9 +1,12 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\PC2409\\Desktop\\programming_study_C\\Project2\\",
+  "WorkspaceRootPath": "C:\\Users\\PC2409\\Desktop\\GameProject\\GameProject_sbs\\Project2\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{61A2303D-D588-473D-A758-DA00E1631A99}|Project2.vcxproj|C:\\Users\\PC2409\\Desktop\\programming_study_C\\Project2\\source.c||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "AbsoluteMoniker": "D:0:0:{A6D5385C-BC3E-417B-B66E-1A0A786AB52C}|..\\Class1st_Input_System\\Class1st_Input_System.vcxproj|C:\\Users\\PC2409\\Desktop\\GameProject\\GameProject_sbs\\Class1st_Input_System\\source.c||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{61A2303D-D588-473D-A758-DA00E1631A99}|Project2.vcxproj|C:\\Users\\PC2409\\Desktop\\GameProject\\GameProject_sbs\\Project2\\source.c||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{61A2303D-D588-473D-A758-DA00E1631A99}|Project2.vcxproj|solutionrelative:source.c||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     }
   ],
@@ -20,11 +23,24 @@
               "$type": "Document",
               "DocumentIndex": 0,
               "Title": "source.c",
-              "DocumentMoniker": "C:\\Users\\PC2409\\Desktop\\programming_study_C\\Project2\\source.c",
+              "DocumentMoniker": "C:\\Users\\PC2409\\Desktop\\GameProject\\GameProject_sbs\\Class1st_Input_System\\source.c",
+              "RelativeDocumentMoniker": "..\\Class1st_Input_System\\source.c",
+              "ToolTip": "C:\\Users\\PC2409\\Desktop\\GameProject\\GameProject_sbs\\Class1st_Input_System\\source.c",
+              "RelativeToolTip": "..\\Class1st_Input_System\\source.c",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000423|",
+              "WhenOpened": "2026-01-13T11:09:48.885Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "source.c",
+              "DocumentMoniker": "C:\\Users\\PC2409\\Desktop\\GameProject\\GameProject_sbs\\Project2\\source.c",
               "RelativeDocumentMoniker": "source.c",
-              "ToolTip": "C:\\Users\\PC2409\\Desktop\\programming_study_C\\Project2\\source.c*",
-              "RelativeToolTip": "source.c*",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAwCAAAAAdAAAAAAAAAA==",
+              "ToolTip": "C:\\Users\\PC2409\\Desktop\\GameProject\\GameProject_sbs\\Project2\\source.c",
+              "RelativeToolTip": "source.c",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAKAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000423|",
               "WhenOpened": "2026-01-12T11:10:45.452Z",
               "EditorCaption": ""
