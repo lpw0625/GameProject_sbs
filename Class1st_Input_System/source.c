@@ -1,21 +1,81 @@
 #include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+//void shuffle(int array[], int size)
+//{
+//    for (int i = 0; i < size; i++)
+//    {
+//        int seed = rand() % size;
+//
+//        int temporary = array[seed];
+//
+//        array[seed] = array[i];
+//
+//        array[i] = temporary;
+//    }
+//}
 
-void shuffle(int array[], int size)
-{
-    for (int i = 0; i < size; i++)
-    {
-        int seed = rand() % size;
 
-        int temporary = array[seed];
-
-        array[seed] = array[i];
-
-        array[i] = temporary;
-    }
-}
 
 int main()
 {
+
+   /* int life = 5;
+    int CpPower = 0;
+    int input = 0;
+
+    srand(time(NULL));
+
+ 
+
+    int answer = (rand() % 50) + 1;
+
+    while(life > 0)
+    {
+        printf("\nLife:");
+
+        for (int i = 0; i < life; i++)
+        {
+            printf("♥");
+        }
+        
+        printf("\n 숫자를 입력하세요: ");
+        scanf_s("%d", &input);
+
+   
+        if (input == answer)
+
+        {
+            printf("Victory!");
+            CpPower++;
+            break;
+        }
+
+        else if (input > answer)
+
+        {
+            printf("[Down!] 입력한 숫자가 정답보다 큽니다.\n");
+            life--;
+        }
+
+        else if (input < answer)
+
+        {
+            printf("[Up!] 입력한 숫자가 정답보다 작습니다.\n");
+            life--;
+        }
+
+        if (life == 0)
+        {
+            printf("\n Game over : 정답은 %d였습니다. \n", answer);
+       }
+    }*/
+     
+    return 0;
+}
+
+
+
 #pragma region 의사 난수
     // 0 ~ 32767 사이의 난수 값을 반환하는 함수입니다.
 
@@ -34,7 +94,7 @@ int main()
 
 #pragma region 셔플 함수
 
-    srand(time(NULL));
+ /*   srand(time(NULL));
 
     int list[] = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
 
@@ -45,11 +105,10 @@ int main()
     for (int i = 0; i < size; i++)
     {
         printf("list[%d]의 값 : %d\n", i, list[i]);
-    }
+    }*/
 
 #pragma endregion
 
 
 
-    return 0;
-}
+
