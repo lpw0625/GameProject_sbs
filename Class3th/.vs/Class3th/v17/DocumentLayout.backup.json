@@ -1,0 +1,37 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\PC2409\\Desktop\\GameProject\\GameProject_sbs\\Class3th\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{4A9DE0B1-BB2D-4595-9268-FDEB61C5F211}|Class3th.vcxproj|C:\\Users\\PC2409\\Desktop\\GameProject\\GameProject_sbs\\Class3th\\source.c||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{4A9DE0B1-BB2D-4595-9268-FDEB61C5F211}|Class3th.vcxproj|solutionrelative:source.c||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 181,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "source.c",
+              "DocumentMoniker": "C:\\Users\\PC2409\\Desktop\\GameProject\\GameProject_sbs\\Class3th\\source.c",
+              "RelativeDocumentMoniker": "source.c",
+              "ToolTip": "C:\\Users\\PC2409\\Desktop\\GameProject\\GameProject_sbs\\Class3th\\source.c*",
+              "RelativeToolTip": "source.c*",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACMAAAACAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000423|",
+              "WhenOpened": "2026-01-19T11:01:40.275Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
