@@ -21,7 +21,7 @@
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
-    <ProjectGuid>{b092e5a2-7adc-4b9f-bd59-c9c981ce26dd}</ProjectGuid>
+    <ProjectGuid>{6eacac3c-3586-4edb-8c4c-66abbcb93ae7}</ProjectGuid>
     <RootNamespace>Class4thColorSystem</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
