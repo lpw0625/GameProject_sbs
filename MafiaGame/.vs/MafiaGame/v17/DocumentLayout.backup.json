@@ -1,0 +1,37 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\PC2409\\Desktop\\GameProject\\GameProject_sbs\\MafiaGame\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{7105BC8B-2A23-475E-9D5F-9C5AE6D64E45}|MafiaGame.vcxproj|C:\\Users\\PC2409\\Desktop\\GameProject\\GameProject_sbs\\MafiaGame\\source.c||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{7105BC8B-2A23-475E-9D5F-9C5AE6D64E45}|MafiaGame.vcxproj|solutionrelative:source.c||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 181,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "source.c",
+              "DocumentMoniker": "C:\\Users\\PC2409\\Desktop\\GameProject\\GameProject_sbs\\MafiaGame\\source.c",
+              "RelativeDocumentMoniker": "source.c",
+              "ToolTip": "C:\\Users\\PC2409\\Desktop\\GameProject\\GameProject_sbs\\MafiaGame\\source.c*",
+              "RelativeToolTip": "source.c*",
+              "ViewState": "AgIAAFwAAAAAAAAAAAAuwHgAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000423|",
+              "WhenOpened": "2026-01-22T11:16:01.23Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

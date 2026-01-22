@@ -1,0 +1,8 @@
+﻿  source.c
+C:\Users\PC2409\Desktop\GameProject\GameProject_sbs\MafiaGame\source.c(23,2): error C4996: 'scanf': This function or variable may be unsafe. Consider using scanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\PC2409\Desktop\GameProject\GameProject_sbs\MafiaGame\source.c(91,135): warning C4474: 'printf' : 서식 문자열에 전달된 인수가 너무 많습니다.
+      C:\Users\PC2409\Desktop\GameProject\GameProject_sbs\MafiaGame\source.c(91,135):
+      자리 표시자 및 해당 매개 변수에는 variadic 인수가 0개 필요하지만 1개가 제공되었습니다.
+  
+C:\Users\PC2409\Desktop\GameProject\GameProject_sbs\MafiaGame\source.c(56,2): error C4996: 'scanf': This function or variable may be unsafe. Consider using scanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\PC2409\Desktop\GameProject\GameProject_sbs\MafiaGame\source.c(115,20): warning C4047: '!=': 'void (__cdecl *)()'의 간접 참조 수준이 'int'과(와) 다릅니다.
