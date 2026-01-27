@@ -1,6 +1,11 @@
 ﻿  source.c
-C:\Users\PC2409\Desktop\GameProject\GameProject_sbs\MafiaGame\source.c(99,135): warning C4474: 'printf' : 서식 문자열에 전달된 인수가 너무 많습니다.
-      C:\Users\PC2409\Desktop\GameProject\GameProject_sbs\MafiaGame\source.c(99,135):
+C:\Users\PC2409\Desktop\GameProject\GameProject_sbs\MafiaGame\source.c(105,135): warning C4474: 'printf' : 서식 문자열에 전달된 인수가 너무 많습니다.
+      C:\Users\PC2409\Desktop\GameProject\GameProject_sbs\MafiaGame\source.c(105,135):
+      자리 표시자 및 해당 매개 변수에는 variadic 인수가 0개 필요하지만 1개가 제공되었습니다.
+  
+C:\Users\PC2409\Desktop\GameProject\GameProject_sbs\MafiaGame\source.c(170,9): warning C4476: 'printf' : 서식 지정자에 알 수 없는 형식 필드 문자 '\xeb'이(가) 있습니다.
+C:\Users\PC2409\Desktop\GameProject\GameProject_sbs\MafiaGame\source.c(170,71): warning C4474: 'printf' : 서식 문자열에 전달된 인수가 너무 많습니다.
+      C:\Users\PC2409\Desktop\GameProject\GameProject_sbs\MafiaGame\source.c(170,71):
       자리 표시자 및 해당 매개 변수에는 variadic 인수가 0개 필요하지만 1개가 제공되었습니다.
   
   MafiaGame.vcxproj -> C:\Users\PC2409\Desktop\GameProject\GameProject_sbs\MafiaGame\x64\Debug\MafiaGame.exe

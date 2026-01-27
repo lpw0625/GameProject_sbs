@@ -15,7 +15,15 @@ int roleGamePlayers[10];
 int IsAlive[10];
 int totalPlayers;
 int killTarget;
+int saveTarget;
 
+int playerVotes[10];
+
+
+void clearBuffer()
+{
+	while (getchar() != '\n');
+}
 
 int menuScreen()
 {
@@ -26,7 +34,13 @@ int menuScreen()
 	printf("2. 게임 종료\n");
 	printf("선택 : ");
 
-	scanf_s("%d", &menuChoice);
+	if (scanf_s("%d", &menuChoice) != 1)
+
+	{
+		clearBuffer();
+		return 0;
+	}
+	clearBuffer();
 
 	switch (menuChoice)
 	{
@@ -35,40 +49,32 @@ int menuScreen()
 
 		return 1;
 
-	case 2: 
+	case 2:
 		printf("게임을 종료 합니다... \n");
 
-			return 2;
-
+		return 2;
 
 	default:
 
 		printf("잘못된 입력입니다....");
 
 		return 0;
-
-
-
-
-
 	}
-
-
 }
 
 void gamePlayer()
 {
 
-
 	printf("참여할 인원의 수를 입력하세요: ");
 	scanf_s("%d", &totalPlayers);
+	clearBuffer();
 
 	for (int i = 0; i < totalPlayers; i++)
 	{
 		roleGamePlayers[i] = CITTZEN;
 		IsAlive[i] = 1;
 	}
-	
+
 
 	int maifaCount = totalPlayers / 4;
 	if (maifaCount < 1) maifaCount = 1;
@@ -98,21 +104,63 @@ void gamePlayer()
 	}
 	printf("\n -------------------- 시민들이 잠든 사이 마피아들은 접선을 하였습니다.......  -------------------- ", &maifaCount);
 	printf("\n -------------------- 밤은 평안합니다.... 지금은....... --------------------  ");
+}
 
-	printf("========== 직업 배정 결과 (테스트) ==========\n");
+void playerVote()
+{
+	int voteChoice;
+
+	for (int i = 0; i < totalPlayers; i++)
+
+		playerVotes[i] = 0;
+
+	printf("\n[낮이 되었습니다. 투표를 시작합니다.]\n");
+	printf("마피아로 의심되는 사람에게 투표하세요.\n");
+
 	for (int i = 0; i < totalPlayers; i++)
 	{
-		printf("[%d번 플레이어]: ", i + 1);
-		if (roleGamePlayers[i] == MAFIA)
-			printf("마피아\n");
-		else if (roleGamePlayers[i] == DOCTOR)
-			printf("의사\n");
-		else
-			printf("시민\n");
+		if (IsAlive[i] == 1)
+		{
+			while (1)
+			{
+				printf("%d번 플레이어의 투표(누구를 지목하시겠습니까?):", i + 1);
+				scanf_s("%d", &voteChoice);
+				clearBuffer();
+
+				if (voteChoice > 0 && voteChoice <= totalPlayers && IsAlive[voteChoice - 1] == 1)
+				{
+					playerVotes[voteChoice - 1]++; 
+					break;
+				}
+				printf("잘못된 입력입니다. 살아있는 플레이어의 번호를 선택하세요\n");
+			}
+		}
 	}
-	printf("==========================================");
-		
+
+	int maxVotes = 0;
+	int targetIdx = -1;
+	int tie = 0;
+
+
+	for (int i = 0; i < totalPlayers; i++)
+	{
+		if (playerVotes[i] > maxVotes)
+		{
+			maxVotes = playerVotes[i];
+			targetIdx = i;
+			tie = 0;
+		}
+		else if (playerVotes[i] == maxVotes && maxVotes > 0)
+		{
+			tie = 1;
+		}
+	}
+
+
+
+
 }
+
 void mafiaPlayer()
 {
 
@@ -128,12 +176,30 @@ void mafiaPlayer()
 		}
 	}
 
-	printf("\n 제거할 플레이어의 번호를 입력하세요:");
-	scanf_s("%d", &killTarget);
+	while (1)
+	{
 
-	IsAlive[killTarget - 1] = 0;
-	printf("\n마피아가 %d번 플레이어를 공격했습니다!\n", killTarget);
+		printf("\n 제거할 플레이어의 번호를 입력하세요:");
+		if (scanf_s("%d", &killTarget) != 1)
+		{
+			clearBuffer();
+			printf("숫자만 입력 가능합니다. \n");
+			continue;
+		}
+		clearBuffer();
+
+		if (killTarget > 0 && killTarget <= totalPlayers && IsAlive[killTarget - 1] == 1)
+		{
+			break;
+		}
+		printf("잘못된 입력입니다. 살아있는 플레이어 번호를 입력하세요.\n");
+	}
+	IsAlive[killTarget - 1] = 0; 
+	printf("\n 마피아가 %번 플레이어를 공격했습니다!\n", killTarget);
 }
+
+	
+	
 
 void doctorPlayer()
 {
@@ -141,14 +207,24 @@ void doctorPlayer()
 	printf("치료를 할 플레이어를 지목하세요.");
 	printf("\n의사는 정체를 모른체 누군가를 치료를 하고 있습니다.\n");
 
+	printf("현재 생존자: ");
+		for (int i = 0; i < totalPlayers; i++)
+		{
+			if (IsAlive[i] == 1 || i == (killTarget - 1))
+			{
+
+				printf("[%d번]", i + 1);
+			}
+
+		}
+
+		printf("\n살릴 플레이어 번호를 입력하세요: ");
+		scanf_s("%d", &saveTarget);
+		clearBuffer();
+
+		printf("%d번 플레이어를 살리기로 결정했습니다.\n", saveTarget);
+
 }
-
-void cittzenPlayer()
-{
-
-}
-
-
 
 int main()
 {
@@ -158,8 +234,27 @@ int main()
 	
 	gamePlayer();
 	mafiaPlayer();
+	doctorPlayer();
 
-	printf("\n============= 밤이 지나고 아침이 밝았습니다. 시민들은 다시 광장에 모였습니다. ============= ");
+
+	printf("\n============= 밤이 지나고 아침이 밝았습니다. 시민들은 광장에 다시 모였습니다. =============\n");
+	if (killTarget == saveTarget) 
+	
+	{
+		IsAlive[killTarget - 1] = 1;
+		printf("의사의 활약으로 밤새 아무도 죽지 않았습니다!\n");
+	}
+	else 
+	
+	{
+		printf("안타깝게도 오늘 밤 %d번 플레이어가 희생되었습니다. \n", killTarget);
+
+	}
+
+	playerVote();
+
+	printf("========================================================\n");
+
 
 	return 0;
 
