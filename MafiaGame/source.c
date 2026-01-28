@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
+#include <windows.h>
 
 
 enum Role
@@ -11,19 +12,56 @@ enum Role
 };
 
 
+
 int roleGamePlayers[10];
 int IsAlive[10];
 int totalPlayers;
 int killTarget;
 int saveTarget;
-
 int playerVotes[10];
+
+void clear()
+{
+	system("cls"); 
+}
 
 
 void clearBuffer()
 {
 	while (getchar() != '\n');
 }
+
+
+void pause()
+{
+	printf("\n 계속하려면 엔터를 누르세요....");
+	getchar();
+}
+
+int checkVictory()
+{
+	int mafiaCount = 0;
+	int citizenCount = 0;
+
+	for (int i = 0; i < totalPlayers; i++)
+	{
+		if (IsAlive[i] == 1)
+		{
+			if (roleGamePlayers[i] == MAFIA)
+				mafiaCount++;
+
+			else
+				citizenCount++;
+		}
+	}
+
+	if (mafiaCount == 0)
+	{
+		printf("\n [시민 승리!] 모든 마피아를 제거했습니다.\n");
+		return 1;
+	}
+}
+
 
 int menuScreen()
 {
@@ -156,6 +194,21 @@ void playerVote()
 		}
 	}
 
+	printf("\n[투표 결과 발표]\n");
+
+	if (tie == 1)
+	{
+		printf("투표 수가 같아 아무도 처형되지 않았습니다.\n");
+
+	}else if(targetIdx != -1){
+
+		printf("최다 득표자: %번 플레이어 (%d표)\n", targetIdx + 1, maxVotes);
+		printf("%번 플레이어가 광장에서 처형이 되었습니다. \n", targetIdx + 1);
+		IsAlive[targetIdx] = 0;
+
+	}
+
+
 
 
 
@@ -172,7 +225,7 @@ void mafiaPlayer()
 	{
 		if (IsAlive[i] == 1)
 		{
-			printf("[%d번 플레이어]", i + 1);
+			printf("[%번 플레이어]", i + 1);
 		}
 	}
 
@@ -233,29 +286,56 @@ int main()
 	while (menuScreen() != 1);
 	
 	gamePlayer();
-	mafiaPlayer();
-	doctorPlayer();
+	pasue();
 
 
-	printf("\n============= 밤이 지나고 아침이 밝았습니다. 시민들은 광장에 다시 모였습니다. =============\n");
-	if (killTarget == saveTarget) 
-	
+
+	while (1)
+
 	{
-		IsAlive[killTarget - 1] = 1;
-		printf("의사의 활약으로 밤새 아무도 죽지 않았습니다!\n");
+		clear();
+
+		printf("==========================================\n");
+		printf("           달이 떠오릅니다 (밤)           \n");
+		printf("==========================================\n");
+		mafiaPlayer();
+		doctorPlayer();
+
+
+		clear();
+		printf("==========================================\n");
+		printf("           해가 떠오릅니다 (아침)         \n");
+		printf("==========================================\n");
+
+
+
+		clear();
+		printf("==========================================\n");
+		printf("	시민들은 다시 광장에 모여 듭니다....  \n");
+		printf("==========================================\n");
+
+		
+
+		printf("\n============= 밤이 지나고 아침이 밝았습니다. 시민들은 광장에 다시 모였습니다. =============\n");
+		if (killTarget == saveTarget)
+
+		{
+			IsAlive[killTarget - 1] = 1;
+			printf(" 의사의 헌신적인 치료로 아무도 죽지 않았습니다!\n");
+		}
+		else
+
+		{
+			printf("안타깝게도 오늘 밤 %d번 플레이어가 희생되었습니다. \n", killTarget);
+
+		}
+
+		playerVote();
+
+		printf("========================================================\n");
+		
+
+
+		return 0;
 	}
-	else 
-	
-	{
-		printf("안타깝게도 오늘 밤 %d번 플레이어가 희생되었습니다. \n", killTarget);
-
-	}
-
-	playerVote();
-
-	printf("========================================================\n");
-
-
-	return 0;
-
 }
