@@ -10,6 +10,26 @@ enum Role { MAFIA, CITTZEN, DOCTOR };
 int roleGamePlayers[10], IsAlive[10], totalPlayers;
 int killTarget = 0, saveTarget = 0, playerVotes[10];
 
+// 마피아에게 살해된 경우 나오는 대사.
+const char* killMessages[] = {
+    "어둠 속에서 짓눌린 비명이 터져 나왔습니다. 차가운 흉기가 살점을 파고드는 감촉이 그의 마지막 감각이었습니다.",
+
+    "바닥을 적시는 것은 쏟아진 와인이 아니었습니다. 뿜어져 나온 선혈이 기괴한 무늬를 그리며 번져 나갑니다.",
+
+    "찢겨진 옷가지와 사방에 흩뿌려진 붉은 흔적만이 그곳에서 일어난 참혹한 학살을 증명하고 있습니다.",
+
+    "그의 목소리는 끊어지는 숨결과 함께 잦아들었습니다. 마피아는 피 묻은 손을 닦으며 유유히 사라졌습니다.",
+
+    "차갑게 식어가는 육신 위로 죽음의 그림자가 드리웁니다. 도시는 이제 누군가의 비릿한 피 냄새로 가득합니다.",
+
+    "그의 눈동자는 공포로 뒤틀린 채 굳어버렸습니다. 마지막 순간 마주한 절망은 영원히 침묵 속에 잠겼습니다.",
+
+    "무자비한 타격 소리가 멈추고, 광장에는 오직 뚝뚝 떨어지는 핏방울 소리만이 정적을 깨우고 있습니다.",
+
+    "도려내진 영혼의 흔적이 방 안을 가득 채웁니다. 그는 살려달라는 애원조차 허락받지 못한 채 도살되었습니다."
+};
+int totalKillMessages = 8;
+
 // --- 유틸리티 함수 ---
 void clear() { system("cls"); }
 void clearBuffer() { while (getchar() != '\n'); }
@@ -28,6 +48,34 @@ void typingEffect(const char* message, int speed, int colorCode) {
     setColor(7);
     printf("\n");
 }
+
+void dramaticTyping(const char* message, int speed, int colorCode) 
+
+{
+    if (message == NULL || message[0] == '\0') 
+        
+      return;
+    setColor(colorCode);
+
+    for (int i = 0; message[i] != '\0'; i++) 
+    
+    {
+        printf("%c", message[i]);
+        fflush(stdout);
+
+        // 아주 낮고 불쾌한 소리 (150Hz)로 심리적 압박감 부여
+        if (message[i] != ' ' && message[i] != '.') 
+        
+        {
+            Beep(150, 40);
+        }
+
+        Sleep(speed); // 추천 속도: 100ms
+    }
+    setColor(7);
+    printf("\n");
+}
+
 
 // --- 승리 조건 체크 ---
 int checkVictory() {
@@ -494,10 +542,21 @@ int main()
         if (killTarget > 0 && killTarget == saveTarget) {
             typingEffect("★ 암살은 실패를 했고 의사가 살려주는데 성공하였습니다. 사망자가 없습니다.", 60, 10);
         }
-        else if (killTarget > 0) {
+        else if (killTarget > 0) 
+        
+        {
             IsAlive[killTarget - 1] = 0;
-            char msg[512]; sprintf_s(msg, sizeof(msg), "안타깝게도 밤 사이 [%d번]이 희생되었습니다.", killTarget);
-            typingEffect(msg, 60, 12);
+
+            printf("\n   [!] 사건 발생: %d번 플레이어가 ", killTarget);
+            setColor(4); // 진한 피색
+            printf("처참하게 살해된 채");
+            setColor(12); // 밝은 빨강
+            printf(" 발견되었습니다.\n");
+
+            Sleep(1200);
+
+            int randomIndex = rand() % totalKillMessages;
+            dramaticTyping(killMessages[randomIndex], 110, 8); // 어두운 회색으로 아주 느리게
         }
 
         if (checkVictory()) break;
