@@ -1,13 +1,13 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\PC2409\\Desktop\\GameProject\\GameProject_sbs\\MafiaGame\\",
+  "WorkspaceRootPath": "C:\\Users\\PC2409\\Desktop\\MafiaGame\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{7105BC8B-2A23-475E-9D5F-9C5AE6D64E45}|MafiaGame.vcxproj|C:\\Users\\PC2409\\Desktop\\GameProject\\GameProject_sbs\\MafiaGame\\source.c||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "AbsoluteMoniker": "D:0:0:{7105BC8B-2A23-475E-9D5F-9C5AE6D64E45}|MafiaGame.vcxproj|C:\\Users\\PC2409\\Desktop\\MafiaGame\\source.c||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{7105BC8B-2A23-475E-9D5F-9C5AE6D64E45}|MafiaGame.vcxproj|solutionrelative:source.c||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{7105BC8B-2A23-475E-9D5F-9C5AE6D64E45}|MafiaGame.vcxproj|C:\\PROGRAM FILES (X86)\\WINDOWS KITS\\10\\INCLUDE\\10.0.26100.0\\UCRT\\STDIO.H||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Program Files (x86)\\Windows Kits\\10\\Include\\10.0.26100.0\\ucrt\\stdio.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     }
   ],
   "DocumentGroupContainers": [
@@ -24,9 +24,9 @@
               "DocumentIndex": 1,
               "Title": "stdio.h",
               "DocumentMoniker": "C:\\Program Files (x86)\\Windows Kits\\10\\Include\\10.0.26100.0\\ucrt\\stdio.h",
-              "RelativeDocumentMoniker": "..\\..\\..\\..\\..\\..\\Program Files (x86)\\Windows Kits\\10\\Include\\10.0.26100.0\\ucrt\\stdio.h",
+              "RelativeDocumentMoniker": "..\\..\\..\\..\\Program Files (x86)\\Windows Kits\\10\\Include\\10.0.26100.0\\ucrt\\stdio.h",
               "ToolTip": "C:\\Program Files (x86)\\Windows Kits\\10\\Include\\10.0.26100.0\\ucrt\\stdio.h",
-              "RelativeToolTip": "..\\..\\..\\..\\..\\..\\Program Files (x86)\\Windows Kits\\10\\Include\\10.0.26100.0\\ucrt\\stdio.h",
+              "RelativeToolTip": "..\\..\\..\\..\\Program Files (x86)\\Windows Kits\\10\\Include\\10.0.26100.0\\ucrt\\stdio.h",
               "ViewState": "AgIAAMoFAAAAAAAAAAApwNMFAAAvAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
               "WhenOpened": "2026-01-29T12:16:14.155Z"
@@ -35,11 +35,11 @@
               "$type": "Document",
               "DocumentIndex": 0,
               "Title": "source.c",
-              "DocumentMoniker": "C:\\Users\\PC2409\\Desktop\\GameProject\\GameProject_sbs\\MafiaGame\\source.c",
+              "DocumentMoniker": "C:\\Users\\PC2409\\Desktop\\MafiaGame\\source.c",
               "RelativeDocumentMoniker": "source.c",
-              "ToolTip": "C:\\Users\\PC2409\\Desktop\\GameProject\\GameProject_sbs\\MafiaGame\\source.c",
+              "ToolTip": "C:\\Users\\PC2409\\Desktop\\MafiaGame\\source.c",
               "RelativeToolTip": "source.c",
-              "ViewState": "AgIAAAIBAAAAAAAAAAAAABwBAABqAAAAAAAAAA==",
+              "ViewState": "AgIAAO8BAAAAAAAAAAAAAAYCAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000423|",
               "WhenOpened": "2026-01-22T11:16:01.23Z",
               "EditorCaption": ""

@@ -44,6 +44,7 @@ int checkVictory() {
     }
     if (mafiaCount >= citizenCount) {
         typingEffect("\n[마피아 승리!] 도시가 어둠에 잠겼습니다.", 50, 12);
+    
         return 1;
     }
     return 0;
@@ -87,23 +88,60 @@ int menuScreen() {
 // --- [중요] 게임 설정 함수 (오류 해결 지점) ---
 void gamePlayer() {
     printf("\n참여 인원 입력 (3~10): ");
-    if (scanf_s("%d", &totalPlayers) != 1) totalPlayers = 4;
+
+    if (scanf_s("%d", &totalPlayers) != 1)
+
+    {
+        totalPlayers = 4;
+    }
     clearBuffer();
 
     if (totalPlayers < 3) totalPlayers = 3;
     if (totalPlayers > 10) totalPlayers = 10;
 
     // 초기화
-    for (int i = 0; i < totalPlayers; i++) {
+    for (int i = 0; i < totalPlayers; i++) 
+    {
         roleGamePlayers[i] = CITTZEN;
         IsAlive[i] = 1;
     }
 
     // 마피아 및 의사 설정
-    int mafiaCount = (totalPlayers / 4 < 1) ? 1 : totalPlayers / 4;
-    for (int i = 0; i < mafiaCount; i++) roleGamePlayers[i] = MAFIA;
-    roleGamePlayers[mafiaCount] = DOCTOR;
+    int mafiaCount = 1;
 
+    if (totalPlayers >= 10)
+    {
+        mafiaCount = 3; // 10명이면 3명
+    }
+    else if (totalPlayers >= 7) {
+        mafiaCount = 2; // 7~9명이면 2명.
+    }
+
+    for (int i = 0; i < mafiaCount;)
+    { 
+
+        int r = rand() % totalPlayers;
+
+        if (roleGamePlayers[r] == CITTZEN)
+        {
+
+            roleGamePlayers[r] = MAFIA;
+            i++;
+        }
+    }
+
+    int doctorPlaced = 0;
+    while (doctorPlaced < 1)
+    {
+        int r = rand() % totalPlayers;
+        if (roleGamePlayers[r] == CITTZEN)
+        {
+            roleGamePlayers[r] = DOCTOR;
+            doctorPlaced = 1;
+        }
+    }
+        
+     
     // 셔플 연출
     clear();
     printf("\n\n\n\n");
@@ -117,8 +155,9 @@ void gamePlayer() {
     printf("\n");
 
     // 실제 데이터 셔플
-    srand((unsigned int)time(NULL));
-    for (int i = totalPlayers - 1; i > 0; i--) {
+
+    for (int i = totalPlayers - 1; i > 0; i--) 
+    {
         int j = rand() % (i + 1);
         int temp = roleGamePlayers[i];
         roleGamePlayers[i] = roleGamePlayers[j];
@@ -161,22 +200,49 @@ void gamePlayer() {
 }
 
 // --- 밤의 단계 ---
-void mafiaPlayer() {
+void mafiaPlayer() 
+{
+    // 마피아가 모두 죽었는지 먼저 체크
+
+    int mafiaAlive = 0;
+
+    for (int i = 0; i < totalPlayers; i++)
+    {
+        if (roleGamePlayers[i] == MAFIA && IsAlive[i] == 1)
+            mafiaAlive = 1;
+    }
+    if (!mafiaAlive)
+
+        return;// 
+
+
     printf("\n[ 어두운 밤, 마피아가 타겟을 고릅니다. ]\n");
-    if (roleGamePlayers[0] == MAFIA) {
-        while (1) {
+    if (roleGamePlayers[0] == MAFIA && IsAlive[0] == 1) 
+    {
+        while (1) 
+        
+        {
             printf("제거할 번호: ");
-            if (scanf_s("%d", &killTarget) == 1 && killTarget > 0 && killTarget <= totalPlayers && IsAlive[killTarget - 1] == 1) {
-                clearBuffer(); break;
+            if (scanf_s("%d", &killTarget) == 1 && killTarget > 0 && killTarget <= totalPlayers && IsAlive[killTarget - 1] == 1) 
+            
+            {
+                clearBuffer(); 
+                
+                break;
             }
             clearBuffer();
         }
     }
     else {
         int att = 0;
-        while (att++ < 100) {
+        while (att++ < 100) 
+        
+        {
             killTarget = (rand() % totalPlayers) + 1;
-            if (IsAlive[killTarget - 1] == 1 && roleGamePlayers[killTarget - 1] != MAFIA) break;
+
+            if (IsAlive[killTarget - 1] == 1 && roleGamePlayers[killTarget - 1] != MAFIA) 
+                
+                break;
         }
         Sleep(1000);
     }
@@ -217,44 +283,203 @@ void discussionPhase() {
 }
 
 // --- 투표 단계 ---
-void playerVote() {
-    for (int i = 0; i < totalPlayers; i++) playerVotes[i] = 0;
-    for (int i = 0; i < totalPlayers; i++) {
-        if (IsAlive[i]) {
-            if (i == 0) {
+void playerVote()
+{
+    for (int i = 0; i < totalPlayers; i++)
+
+    {
+        playerVotes[i] = 0;
+    }
+
+        printf("\n[모든 생존자가 광장에 모여 서로를 의심하기 시작합니다...] \n\n ");
+
+    Sleep(1200);
+
+
+
+    for (int i = 0; i < totalPlayers; i++)
+
+    {
+        if (IsAlive[i] == 1)
+
+        {
+            if (i == 0)
+
+            {
                 int v;
                 while (1) {
-                    printf("투표 대상 번호: ");
-                    if (scanf_s("%d", &v) == 1 && v > 0 && v <= totalPlayers && IsAlive[v - 1]) {
-                        playerVotes[v - 1]++; clearBuffer(); break;
+                    printf("당신은 누구를 처형대로 보내겠습니까? [투표 대상 번호]: ");
+                    setColor(7);
+                    if (scanf_s("%d", &v) == 1 && v > 0 && v <= totalPlayers && IsAlive[v - 1])
+
+                    {
+                        playerVotes[v - 1]++;
+                        clearBuffer();
+                        break;
                     }
+                    printf("잘못된 입력이거나 이미 사망한 플레이어입니다.\n");
                     clearBuffer();
                 }
             }
-            else {
-                int av; do { av = rand() % totalPlayers; } while (!IsAlive[av]);
+            else  // 컴퓨터끼리 투표 (무한루프 방지)
+            {
+                int av;
+
+                do
+                {
+
+                    av = rand() % totalPlayers;
+
+                }
+
+                while (IsAlive[av] == 0); // 살아있는 플레이어를 찾을때까지 루프.
+
                 playerVotes[av]++;
             }
         }
     }
-    int max = -1, target = -1, tie = 0;
-    for (int i = 0; i < totalPlayers; i++) {
-        if (playerVotes[i] > max) { max = playerVotes[i]; target = i; tie = 0; }
-        else if (playerVotes[i] == max && max > 0) tie = 1;
+
+    printf("\n[개표 진행 중... 광장에서는 무거운 정적이 흐릅니다... ] \n");
+
+    for (int i = 0; i < 3; i++)
+
+    {
+        printf(" . "); Sleep(800);
     }
-    if (tie) typingEffect("동표로 인해 아무도 처형되지 않았습니다.", 50, 14);
-    else if (target != -1) {
-        char m[512]; sprintf_s(m, sizeof(m), "투표 결과 [%d번] 플레이어가 처형되었습니다.", target + 1);
-        typingEffect(m, 60, 12);
+
+    printf("\n\n");
+
+
+    int max = -1,
+        target = -1,
+        tie = 0;
+
+    for (int i = 0; i < totalPlayers; i++)
+    {
+        if (IsAlive[i])
+
+        {
+            printf("[%d번 플레이어] : %d 표\n", i + 1, playerVotes[i]);
+            Sleep(800);
+
+            if (playerVotes[i] > max)
+            {
+                max = playerVotes[i];
+                target = i;
+                tie = 0; // 더 높은 득표자가 나오면 동프 상태 해제 
+            }
+            else if (playerVotes[i] == max && max > 0)
+            {
+                tie = 1;
+            }
+        }
+    }
+
+    printf("\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n");
+    Sleep(1000);
+
+    if (tie)
+    {
+        typingEffect("[!] 시민들의 분노가 분산이 되었습니다. 아무도 처형대로 끌려가지 않았습니다.", 50, 14);
+
+    }
+    else if (target != -1)
+    {
         IsAlive[target] = 0;
+
+       
+        setColor(12); // 진한 빨간색
+        printf("[!] 중요사항....! 최종 판결이 내려졌습니다.", 100, 12);
+        Sleep(800);
+
+
+        setColor(14);
+        printf("교수형을 집행할 집행관들이 % d번 플레이어를 억류합니다.\n", target + 1);
+        Sleep(1500);
+
+        setColor(8);
+        printf("   \"난 아니야! 제발! 살려줘!!\"\n");
+        Sleep(1000);
+        printf("그의 절규가 광장에 울려 퍼집니다.\n");
+        Sleep(2000);
+
+        setColor(12);
+        typingEffect("   [!] 차가운 바람이 부는 광장 한가운데... 밧줄이 팽팽해지며, 그는 밧줄에 목이 메인 채 숨을 거두었습니다.", 70, 12);
+        Sleep(1500);
+
+        printf(" 광장 바닥은 그의 ");
+        setColor(4);
+
+        printf("검붉은 핏물");
+        setColor(12);
+        printf("로 서서히 젖어갑니다....\n");
+
+        Sleep(2000);
+
+        printf("\n   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n");
+        if (roleGamePlayers[target] == MAFIA)
+        { 
+
+        setColor(11);
+        printf("   [ 확인 ] 죽은 자의 소지품에서 마피아의 표식이 발견되었습니다.\n");
+        printf("   그는 사악한 [ 마피아 ] 였습니다.\n");
+
+        } 
+        
+        else
+
+        {
+
+            setColor(8);
+            printf("   [ 확인 ] 그의 소지품에는 가족사진 한 장뿐이었습니다.\n");
+            printf("   그는 무고한 [ 시민 ] 이었습니다.\n");
+        }
+
     }
+
+    printf("   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n");
+    setColor(7);
 }
 
-// --- 메인 로직 ---
-int main() {
+
+
+void showGameResult()
+{
+    printf("\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n");
+    printf("         [ 게 임  결 과  공 개 ]\n");
+    printf("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n");
+
+    for (int i = 0; i < totalPlayers; i++)
+    {
+        printf(" [%d번 플레이어] : ", i + 1);
+
+        if (roleGamePlayers[i] == MAFIA)
+        {
+            setColor(12); printf("마피아 (MAFIA)\n");
+        }
+        else if (roleGamePlayers[i] == DOCTOR)
+        {
+            setColor(10); printf("의사 (DOCTOR)\n");
+        }
+        else {
+            setColor(11); printf("시민 (CITIZEN)\n");
+        }
+        setColor(7); // 색상 초기화
+        Sleep(500);  // 한 명씩 천천히 공개되는 연출
+    }
+    printf("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n");
+}
+
+   
+
+int main() 
+{
+    srand((unsigned int)time(NULL));
     while (!menuScreen());
-    gamePlayer(); // 이제 오류 없이 작동합니다
+    gamePlayer(); 
+
     pause();
+
 
     while (1) {
         clear();
@@ -267,7 +492,7 @@ int main() {
         clear();
         printf("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n          아 침 이 밝 았 습 니 다\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n");
         if (killTarget > 0 && killTarget == saveTarget) {
-            typingEffect("★ 의사가 마피아의 공격을 저지했습니다! 사망자가 없습니다.", 60, 10);
+            typingEffect("★ 암살은 실패를 했고 의사가 살려주는데 성공하였습니다. 사망자가 없습니다.", 60, 10);
         }
         else if (killTarget > 0) {
             IsAlive[killTarget - 1] = 0;
@@ -284,8 +509,17 @@ int main() {
         clear();
         printf("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n          낮 의 투 표 시 간\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n");
         playerVote();
-        if (checkVictory()) break;
+        if (checkVictory()) 
+        
+        {
+            break;
+        }
         pause();
     }
+
+    showGameResult();
+    printf("\n게임을 종료합니다. 이용해 주셔서 감사합니다.\n");
+    pause();
+
     return 0;
 }
